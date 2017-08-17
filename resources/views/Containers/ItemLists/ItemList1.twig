@@ -21,7 +21,7 @@
 {% if itemList is not empty %}
     <hr>
 
-    <h1 class="h3">
+    <p class="h3">
         {% if listType == "last_seen" %}
             {% if isNameEmpty %}
                 {{ trans("Ceres::Template.itemListLastSeen") }}
@@ -41,21 +41,21 @@
                 {{ config("Ceres.item.lists.1." ~ services.sessionStorage.getLang() ~ ".list_name") }}
             {% endif %}
         {% endif %}
-    </h1>
+    </p>
 
     <div class="row">
         <div class="col-xs-12 col-lg-12">
             {% if itemList | length > 4 %}
                 <div id="list-carousel-{{ randomIdentifier }}" class="list-item-carousel owl-carousel owl-theme owl-single-item">      
                     {% for item in itemList %}    
-                            {% include "Ceres::Category.Item.Partials.CategoryListItem" with { 'item': item, enableCarousel: false, 'tags': item.data.tags } %} 
+                            {% include "Ceres::Category.Item.Partials.CategoryListItem" with { 'item': item, enableCarousel: false, 'tags': item.data.tags, 'showOrderProperties': false } %}
                     {% endfor %}
                 </div>
             {% else %}
                 <ul id="list-carousel-{{ randomIdentifier }}" class="product-list row grid">
                     {% for item in itemList %}
                         <li class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
-                            {% include "Ceres::Category.Item.Partials.CategoryListItem" with { 'item': item, enableCarousel: false, 'tags': item.data.tags } %}
+                            {% include "Ceres::Category.Item.Partials.CategoryListItem" with { 'item': item, enableCarousel: false, 'tags': item.data.tags, 'showOrderProperties': false } %}
                         </li>
                     {% endfor %}
                 </ul>

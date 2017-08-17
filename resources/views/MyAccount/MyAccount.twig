@@ -1,5 +1,9 @@
 {% extends getPartial('page-design') %}
 
+{% block PartialHead %}
+    <title>{{ trans("Ceres::Template.accMyAccount") }} | {{ config("Ceres.header.company_name") }}</title>
+{% endblock %}
+
 {% block PageBody %}
 
     {{ component( "Ceres::Customer.Components.AddressSelect.AddressSelect" ) }}
@@ -19,7 +23,7 @@
         <!-- HEADER -->
         <div class="row m-b-3">
             <div class="col-sm-9">
-                <h1 class="h4">{{ trans("Ceres::Template.accMyAccount") }}</h1>
+                <h1 class="h2">{{ trans("Ceres::Template.accMyAccount") }}</h1>
                 {% if frontend.Account.getIsAccountLoggedIn %}
                     {% if userObject.firstName|length > 0 and userObject.lastName|length > 0 %}
                         <span class="text-muted">{{ trans("Ceres::Template.generalHello", {"username": userObject.firstName ~ " " ~ userObject.lastName}) }}</span>

@@ -1,5 +1,95 @@
 # Release Notes für Ceres
 
+## v1.4.2 (2017-08-16)
+
+### Behoben
+
+- Nicht übersetzte Kategorien werden nun von der mobilen Navigation ignoriert und verursachen keine JavaScript-Fehler mehr.
+- Nicht übersetzte Kategorien werden nun in der Seitennavigation nicht mehr ausgegeben.
+- Wenn eine Artikelseite geöffnet wird, wird die aktuelle Kategorie in der Seitennavigation nun korrekt angezeigt.
+- Ein Fehler, wenn kein Title-HTML-Tag vorhanden ist, wurde behoben.
+- Die Artikelnamen im Basket werden nun wieder in der richtigen Größe angezeigt.
+
+
+## v1.4.1 (2017-08-11)
+
+### Hinzugefügt
+- Der Suchseite wurde eine Überschrift hinzugefügt.
+- Es wurde eine aktualisierte Passwort-Überprüfung zur Registrierung hinzugefügt.
+
+### Behoben
+- Es gibt es keine Fehlermeldungen mehr beim Wechseln der Kategorie, wenn das Kategoriebild nicht ausgegeben wird.
+- Die Größe der Überschrift von Kategorien ist nun korrekt, wenn das Bild der Kategorie ausgegeben wird.
+- Die Größe der Bilder in der Wunschliste wird nun korrekt skaliert.
+- Das Icon der Wunschliste wird im Header nun neben den Warenkorb gelegt und die Position der Artikel in der Wunschliste wurde auf links neben das Icon geändert.
+- Der Zähler für Artikel im Warenkorb wurde optisch leicht angepasst.
+
+## Geändert
+
+- Der Tab **Registration** wurde aus der Config entfernt.
+- Das RegEx für E-Mail und Passwort wird jetzt von Ceres vorgegeben.
+
+## v1.4.0 (2017-08-09)
+
+### Hinzugefügt
+
+- Für den Warenkorb im Header können nun die angezeigten Informationen eingestellt werden. Es ist möglich den Warenwert, die Anzahl der Artikel oder Warenwert und die Artikelanzahl im Header anzuzeigen. Weitere Informationen dazu finden Sie im <a href="https://knowledge.plentymarkets.com/omni-channel/online-shop/ceres-einrichten#80" target="_blank">Handbuch</a>.
+- Ein eigenes Favicon kann für den Webshop hochgeladen werden. Weitere Informationen zum Hochladen des Favicons finden Sie im <a href="https://knowledge.plentymarkets.com/omni-channel/online-shop/ceres-einrichten#350" target="_blank">Handbuch</a>.
+- Jede Seite hat jetzt einen dynamisch generierten Seitentitel.
+- Der Warenbestand von Artikeln wird nun im Webshop berücksichtigt.
+- Die Einstellung **Unsichtbar: in Artikelauflistung** im Tab **Einstellungen** einer Variante wird nun im Webshop berücksichtigt.
+- Varianten ohne Bestand können nun für das Varianten-Dropdown aktiviert werden. Weitere Informationen dazu finden Sie im <a href="https://knowledge.plentymarkets.com/omni-channel/online-shop/ceres-einrichten#90" target="_blank">Handbuch</a>.
+- Eine Wunschliste wurde hinzugefügt. **Hinweis:** Um die Wunschliste im Webshop anzuzeigen, muss die Route `/wish-list` im Tab **Routing** in der Konfiguration von **IO** aktiviert werden.
+- Die Kontaktseite und das Kontaktformular wurden hinzugefügt. **Hinweis:** Um die Kontaktseite im Webshop anzuzeigen, muss die Route `/contact` im Tab **Routing** in der Konfiguration von **IO** aktiviert werden. Weitere Informationen zum Einrichten der Kontaktseite finden Sie im <a href="https://knowledge.plentymarkets.com/omni-channel/online-shop/ceres-einrichten#370" target="_blank">Handbuch</a>.
+- Serverseitige Fehlermeldungen werden im Frontend richtig ausgegeben.
+- Der Link aus der Bestellbestätigung leitet nun auf die Bestellbestätigungsseite von Ceres weiter.
+- Das Bild einer Kategorie kann nun in der Kategorieansicht anzeigt werden. Weitere Informationen dazu finden Sie im <a href="https://knowledge.plentymarkets.com/omni-channel/online-shop/ceres-einrichten#100" target="_blank">Handbuch</a>.
+
+## Geändert
+
+- Die Überschriften auf den Seiten des Webshops wurden vergrößert.
+- Die Überschriften der Artikellisten wurde von `h1` auf ein `p`-Element geändert.
+- Die mobile Navigation wurde grundlegend überarbeitet und zeigt bis zu 6 Unterebenen an.
+
+### Behoben
+
+- Bildpositionen werden nun auch in den Artikellisten berücksichtigt.
+- Die Sprachauswahl im Header des Webshops zeigt nun wieder Sprachen an.
+- Artikelkategorien wurden auch ohne verknüpfte Artikel im Webshop angezeigt. Dies wurde behoben.
+- Wenn ein Artikel öfter in den Warenkorb gelegt wurde, als Warenbestand vorhanden war, kam eine `Bad Params` Fehlermeldung. Dies wurde behoben.
+
+### Entfernt
+
+- Die Komponente `Mobile-Breadcrumbs` wurde entfernt, da die neue mobile Navigation eigene Breadcrumbs enthält.
+
+## v1.3.2 (2017-07-26)
+
+### Hinzugefügt
+
+- In den Adressformularen für die Lieferländer DE und UK wurde das Feld **Telefon** hinzugefügt.
+
+### Geändert
+
+- Das Design für die Liste der Versandarten in der Kaufabwicklung wurde geändert.
+
+### Behoben
+
+- Die Mengeneingabe in der Einzelansicht eines Artikels, der Warenkorbvorschau und im Warenkorb berücksichtigt nun die Minimal- und Maximalbestellmenge eines Artikels.
+- Die Artikelbilder in der Bestellbestätigungsseite werden nun korrekt ausgegeben.
+
+## v1.3.1 (2017-07-24)
+
+### Hinzugefügt
+
+- Das Custom-Event `onVariationChanged` wurde hinzugefügt.
+- Bestellmerkmale vom Typ **Text** können nun mit Artikeln verknüpft werden. Diese werden in der Einzelansicht eines Artikels angezeigt (Hinweis: Zurzeit stehen für die Verwendung im Webshop **Ceres** nur Bestellmerkmale vom Typ **Text** zur Verfügung. Auch die Einordnung von Bestellmerkmalen in Merkmalgruppen ist bisher nicht möglich). Weitere Informationen zur Einrichtung von Bestellmerkmalen finden Sie im <a href="https://knowledge.plentymarkets.com/omni-channel/online-shop/ceres-einrichten#340" target ="_blank">Handbuch</a> und im <a href="https://forum.plentymarkets.com/t/howto-bestellmerkmale-in-ceres-einrichten/63155" target="_blank">Forum</a>. 
+- Beim Anlegen/Editieren von Adressen werden die Felder nun rot markiert, wenn vom Server eine Fehlermeldung für diese Felder kommt. Außerdem werden die Fehler ausgegeben anstatt "Validation errors".
+
+### Behoben
+
+- Wenn im Footer Kategorien verknüpft werden, werden diese nun sprachabhängig geladen.
+- Im **Mein Konto**-Bereich wird nun immer die E-Mail-Adresse des eingeloggten Shop-Besuchers angezeigt.
+
 ## v1.3.0 (2017-07-13)
 
 ### Hinzugefügt
@@ -30,9 +120,6 @@
 - In der Zahlungsabwicklung wird beim Wechseln der Lieferadresse nun automatisch die erste erlaubte Zahlungsart gewählt.
 - Der Name eines Artikels, der in der Kategorieansicht oder in einer Artikelliste angezeigt wird, wird nicht mehr nach 35 Zeichen abgeschnitten.
 
-### Bekannte Probleme
-
-- Artikelkategorien werden auch ohne verknüpfte Artikel im Webshop angezeigt.
 
 ## v1.2.10 (2017-07-05)
 

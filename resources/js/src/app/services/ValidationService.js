@@ -38,7 +38,7 @@ export function getInvalidFields(form)
 
 export function markInvalidFields(fields, errorClass)
 {
-    errorClass = errorClass || "has-error";
+    errorClass = errorClass || "error";
 
     $(fields).each(function(i, elem)
     {
@@ -59,6 +59,33 @@ export function markInvalidFields(fields, errorClass)
                 _findFormControls($elem).off("click.removeErrorClass keyup.removeErrorClass change.removeErrorClass");
             }
         });
+    });
+}
+
+export function markFailedValidationFields(form, validationErrors, errorClass)
+{
+    $form = $(form);
+
+    errorClass = errorClass || "error";
+
+    $form.find("[data-model]").each((i, elem) =>
+    {
+        const $elem = $(elem);
+        const attribute = $elem.attr("data-model");
+
+        if (attribute in validationErrors)
+        {
+            $elem.addClass(errorClass);
+
+            const fieldLabel = $elem.find("label")[0].innerHTML.replace("*", "");
+
+            if (fieldLabel)
+            {
+                const attributeCamel = attribute.replace(/([A-Z])/g, " $1").toLowerCase();
+
+                validationErrors[attribute][0] = validationErrors[attribute][0].replace(attributeCamel.replace("_", " "), fieldLabel);
+            }
+        }
     });
 }
 
@@ -151,6 +178,10 @@ function _validateInput($formControl, validationKey)
         return _hasValue($formControl) && $.isNumeric($.trim($formControl.val()));
     case "ref":
         return _compareRef($.trim($formControl.val()), $.trim($formControl.attr("data-validate-ref")));
+    case "mail":
+        return _isMail($formControl);
+    case "password":
+        return _isPassword($formControl);
     case "regex":
         {
             const ref = $formControl.attr("data-validate-ref");
@@ -167,6 +198,30 @@ function _validateInput($formControl, validationKey)
 function _hasValue($formControl)
 {
     return $.trim($formControl.val()).length > 0;
+}
+
+/**
+ * @param {any} value
+ * @returns value is valid mail
+ */
+function _isMail($formControl)
+{
+    const mailRegEx = new RegExp(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
+
+    return mailRegEx.test($formControl.val());
+}
+
+/**
+ * Minimum eight characters, at least one letter and one number
+ *
+ * @param {any} value
+ * @returns value is valid password
+ */
+function _isPassword($formControl)
+{
+    const passwordRegEx = new RegExp(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d!$%@#£€*?&]{8,}$/);
+
+    return passwordRegEx.test($formControl.val());
 }
 
 function _compareRef(value, ref)
@@ -200,4 +255,4 @@ function _eval(input)
     return (new Function("return " + input))();
 }
 
-export default {validate, getInvalidFields, markInvalidFields, unmarkAllFields};
+export default {validate, getInvalidFields, markInvalidFields, markFailedValidationFields, unmarkAllFields};

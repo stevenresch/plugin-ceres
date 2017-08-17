@@ -11,7 +11,6 @@ export function renderItems(currentCategory)
 {
     ResourceService.getResource("isLoadingBreadcrumbs").set(true);
 
-    $("#mainNavbarCollapsable").removeClass("open");
     $("body").removeClass("menu-is-visible");
 
     if ($.isEmptyObject(_categoryTree))
@@ -68,7 +67,23 @@ function _updateHistory(currentCategory)
 
     window.history.replaceState({}, title, getScopeUrl(currentCategory) + window.location.search);
 
-    document.getElementsByTagName("h1")[0].innerHTML = currentCategory.details[0].name;
+    document.querySelector("h1").innerHTML = currentCategory.details[0].name;
+    document.title = currentCategory.details[0].name + " | " + App.config.shopName;
+
+    const categoryImage = currentCategory.details[0].imagePath;
+    const parallaxImgContainer = document.querySelector(".parallax-img-container");
+
+    if (parallaxImgContainer)
+    {
+        if (categoryImage)
+        {
+            parallaxImgContainer.style.backgroundImage = "url(/documents/" + currentCategory.details[0].imagePath + ")";
+        }
+        else
+        {
+            parallaxImgContainer.style.removeProperty("background-image");
+        }
+    }
 }
 
 /**
